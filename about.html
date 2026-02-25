@@ -14,6 +14,8 @@
             font-family: 'Montserrat', sans-serif;
             background-color: #ffffff;
             color: #1a1a1a;
+            overflow-x: hidden;
+            scroll-behavior: smooth;
         }
 
         .bg-brand-yellow {
@@ -32,137 +34,143 @@
             color: #FF0000;
         }
 
-        .bg-brand-purple {
-            background-color: #9900CC;
+        /* Transparent Nav */
+        .nav-transparent {
+            background: transparent;
+            position: absolute;
+            width: 100%;
+            top: 0;
+            z-index: 100;
+            border: none;
         }
 
-        .bg-brand-cyan {
-            background-color: #03CDC3;
-        }
-
-        .hero-overlay {
-            background: linear-gradient(rgba(0, 0, 0, 0.85), rgba(0, 0, 0, 0.85)), url('images/kaduna_community_bg.jpg');
+        /* Dark Cinematic Overlay (RGB 10,10,10) */
+        .hero-overlay-dark {
+            background: linear-gradient(rgba(10, 10, 10, 0.85), rgba(10, 10, 10, 0.95)), url('Images/about_hero_nigeria.jpg');
             background-size: cover;
             background-position: center;
         }
 
+        /* Dual Wing Borders */
         .parent-wing {
-            border-left: 8px solid #03CDC3;
+            border-left: 10px solid #03CDC3;
         }
 
         .teen-wing {
-            border-left: 8px solid #FFCC00;
+            border-left: 10px solid #FFCC00;
+        }
+
+        /* Hidden Bank Detail Toggle */
+        .bank-details {
+            display: none;
+        }
+
+        .bank-details.active {
+            display: block;
+            animation: fadeIn 0.5s ease;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(-10px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .hero-title {
+                font-size: 2.8rem !important;
+            }
         }
     </style>
 </head>
 
 <body>
 
-    <header class="bg-white border-b sticky top-0 z-50">
-        <div
-            class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center text-xs font-bold uppercase tracking-widest">
-            <div class="font-black text-lg text-black">INSPIRING <span
-                    class="text-brand-red text-brand-red">TEENS</span></div>
-            <nav class="hidden lg:flex space-x-8">
-                <a href="index.html" class="hover:text-brand-red transition">Home</a>
-                <a href="about.html" class="text-brand-red">About Us</a>
-                <a href="programs.html" class="hover:text-brand-red transition">Programs</a>
-                <a href="contact.html" class="hover:text-brand-red transition">Contact</a>
+    <header class="nav-transparent py-4 px-6">
+        <div class="max-w-7xl mx-auto flex justify-between items-center">
+            <div class="flex items-center space-x-3">
+                <div
+                    class="w-10 h-10 bg-brand-yellow rounded-full flex items-center justify-center font-black text-black">
+                    IT</div>
+                <div class="font-black text-sm md:text-lg uppercase leading-none text-white">Inspiring <span
+                        class="text-brand-yellow">Teens</span></div>
+            </div>
+            <nav class="hidden lg:flex space-x-8 text-[11px] font-bold uppercase tracking-widest text-white">
+                <a href="index.html" class="hover:text-brand-yellow transition">Home</a>
+                <a href="about.html" class="text-brand-yellow">About Us</a>
+                <a href="programs.html" class="hover:text-brand-yellow transition">Programs</a>
+                <a href="contact.html" class="hover:text-brand-yellow transition">Contact</a>
             </nav>
-            <button class="bg-brand-red text-white px-6 py-2 rounded-full font-bold">Donate Now</button>
+            <a href="#partnership"
+                class="bg-brand-red text-white px-6 py-2 rounded-full font-bold text-[10px] uppercase shadow-lg">Support</a>
         </div>
     </header>
 
-    <section class="relative hero-overlay py-40 text-center text-white">
-        <div class="max-w-7xl mx-auto px-6 relative z-10">
-            <h1 class="text-5xl md:text-8xl font-black uppercase tracking-tighter" data-aos="fade-down">
+    <section class="relative hero-overlay-dark py-48 text-center text-white">
+        <div class="max-w-7xl mx-auto px-6 relative z-10" data-aos="fade-down">
+            <h1 class="hero-title text-5xl md:text-8xl font-black uppercase tracking-tighter">
                 <span class="text-brand-yellow">OUR STORY</span> & <br> LEADERSHIP
             </h1>
-            <p class="text-brand-yellow mt-6 font-bold uppercase tracking-[0.3em] text-sm">Clarity • Inspiration •
-                Enlightenment [cite: 35]</p>
+            <p class="text-brand-yellow mt-6 font-bold uppercase tracking-[0.3em] text-xs">Clarity • Inspiration •
+                Enlightenment</p>
         </div>
     </section>
 
-    <section class="py-24 bg-gray-50 px-6">
+    <section class="py-24 bg-gray-50 px-6 border-b">
         <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-12">
-            <div class="bg-white p-12 rounded-[3rem] shadow-xl border-t-8 border-brand-purple" data-aos="fade-right">
+            <div class="bg-white p-12 rounded-[3rem] shadow-xl border-t-8 border-[#9900CC]" data-aos="fade-right">
                 <h3 class="text-3xl font-black mb-6 uppercase tracking-tighter">Our Mission</h3>
                 <p class="text-gray-600 leading-relaxed text-lg font-medium">To nurture a new and sustainable generation
-                    of teens into peak performing adults with the potential of contributing meaningfully to
-                    society[cite: 40]. This is achieved through the provision of Christian-based mentorship, a
-                    supportive environment, and adequate resources[cite: 41].</p>
+                    of teens into peak performing adults with the potential of contributing meaningfully to society.</p>
             </div>
-            <div class="bg-white p-12 rounded-[3rem] shadow-xl border-t-8 border-brand-cyan" data-aos="fade-left">
+            <div class="bg-white p-12 rounded-[3rem] shadow-xl border-t-8 border-[#03CDC3]" data-aos="fade-left">
                 <h3 class="text-3xl font-black mb-6 uppercase tracking-tighter">Our Vision</h3>
                 <p class="text-gray-600 leading-relaxed text-lg font-medium">To preserve and secure the future of
-                    today's teens, and by extension, that of our world[cite: 42]. We sustainably promote character
-                    development that guarantees the inculcation of sound morals and values in them[cite: 42].</p>
+                    today's teens, and by extension, that of our world.</p>
             </div>
         </div>
     </section>
 
-    <section class="py-24 bg-white px-6 overflow-hidden">
-        <div class="max-w-7xl mx-auto">
-            <div class="text-center mb-20">
-                <h2 class="text-4xl md:text-6xl font-black uppercase tracking-tighter">One Message, <span
-                        class="text-brand-red">Two Worlds</span></h2>
-                <p class="text-gray-500 mt-4">Bridging the gap between guidance and growth.</p>
+    <section class="py-24 bg-white px-6">
+        <div class="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-16">
+            <div class="parent-wing bg-gray-50 p-12 rounded-r-[3rem] shadow-inner" data-aos="fade-right">
+                <span class="text-[#03CDC3] font-black uppercase tracking-widest text-xs">Professional Wing</span>
+                <h3 class="text-3xl font-black mt-4 mb-8 uppercase tracking-tighter text-black">For Parents & Leaders
+                </h3>
+                <p class="text-gray-600 leading-relaxed mb-8 font-medium">Providing structured, professional
+                    environments for caregivers to integrate Bible-based mentorship into the home.</p>
             </div>
-
-            <div class="grid grid-cols-1 lg:grid-cols-2 gap-16">
-                <div class="parent-wing bg-gray-50 p-12 rounded-r-[3rem] shadow-sm" data-aos="fade-right">
-                    <span class="text-brand-cyan font-black uppercase tracking-widest text-xs">The Professional
-                        Wing</span>
-                    <h3 class="text-3xl font-black mt-4 mb-8 uppercase tracking-tighter text-gray-800">For Parents &
-                        Guardians</h3>
-                    <p class="text-gray-600 leading-relaxed mb-8">We offer a structured support system for parents to
-                        navigate the complexities of raising teenagers in today's world. Our professional approach
-                        includes training, counseling, and a Bible-based framework for domestic mentorship.</p>
-                    <ul class="space-y-4 font-bold text-sm text-gray-700">
-                        <li>• Teens/Parents Forum (TPF) </li>
-                        <li>• Professional Counselling Platform (TCP) </li>
-                        <li>• Structured Domestic Mentorship Guides</li>
-                    </ul>
-                </div>
-
-                <div class="teen-wing bg-brand-yellow p-12 rounded-r-[3rem] shadow-xl relative" data-aos="fade-left">
-                    <div class="absolute -top-6 -right-6 text-6xl opacity-20">⚡</div>
-                    <span class="text-brand-red font-black uppercase tracking-widest text-xs">The Teen's Wing</span>
-                    <h3 class="text-3xl font-black mt-4 mb-8 uppercase tracking-tighter text-black">For The Fearless
-                        Teen</h3>
-                    <p class="text-black font-medium leading-relaxed mb-8">This is your space! Discover your purpose
-                        through high-energy bootcamps, sports, and peer groups. We turn inspiration into action, helping
-                        you become the peak-performing adult you were meant to be!</p>
-                    <div class="grid grid-cols-2 gap-4 text-[10px] font-black uppercase tracking-widest text-brand-red">
-                        <div class="bg-white/40 p-3 rounded-xl">Skills Acquisition</div>
-                        <div class="bg-white/40 p-3 rounded-xl">Sports Club (TSC)</div>
-                        <div class="bg-white/40 p-3 rounded-xl">Leadership Club</div>
-                        <div class="bg-white/40 p-3 rounded-xl">Annual Bootcamp</div>
-                    </div>
-                </div>
+            <div class="teen-wing bg-brand-yellow p-12 rounded-r-[3rem] shadow-2xl" data-aos="fade-left">
+                <span class="text-brand-red font-black uppercase tracking-widest text-xs">Lively Wing</span>
+                <h3 class="text-3xl font-black mt-4 mb-8 uppercase tracking-tighter text-black">For The Future Leaders
+                </h3>
+                <p class="text-black font-semibold leading-relaxed mb-8 italic">This is where fun meets purpose.
+                    High-energy bootcamps and sports clubs that capture the spirit of youth.</p>
             </div>
         </div>
     </section>
 
     <section class="py-24 bg-gray-50 px-6">
-        <div class="max-w-7xl mx-auto">
-            <div class="flex flex-col md:flex-row items-center gap-16 bg-white rounded-[4rem] p-12 lg:p-20 shadow-2xl">
-                <div class="md:w-1/3">
-                    <img src="images/MD Inspiring Teens.jpeg"
-                        class="w-full aspect-square object-cover rounded-[3rem] border-8 border-brand-yellow shadow-2xl"
-                        alt="Managing Director">
-                </div>
-                <div class="md:w-2/3">
-                    <span class="text-brand-red font-black uppercase tracking-widest text-xs">Managing Director &
-                        Founder</span>
-                    <h2 class="text-4xl md:text-5xl font-black mt-4 mb-6 uppercase tracking-tighter text-black">Amb
-                        Jummai Yakubu Kezi</h2>
-                    <p class="text-xl text-brand-purple font-bold italic mb-8">"Highlighting the journey of learning and
-                        personal advancement."</p>
-                    <p class="text-gray-600 leading-relaxed text-lg">Leading with a conceptual basis founded on a
-                        combination mark, our MD emphasizes the profound impact a mentor has on a young
-                        individual's growth and development.</p>
-                </div>
+        <div
+            class="max-w-7xl mx-auto flex flex-col md:flex-row items-center gap-16 bg-white rounded-[4rem] p-12 md:p-16 shadow-2xl">
+            <img src="Images/MD Inspiring Teens.jpeg"
+                class="w-full md:w-1/3 aspect-square object-cover rounded-[3rem] border-8 border-brand-yellow shadow-lg"
+                alt="Managing Director">
+            <div class="md:w-2/3">
+                <span class="text-brand-red font-black uppercase tracking-widest text-xs">Managing Director &
+                    Founder</span>
+                <h2 class="text-4xl font-black mt-2 mb-6 uppercase tracking-tighter">Amb. Jummai Yakubu Kezi</h2>
+                <p class="text-xl text-[#9900CC] font-bold italic mb-6">"Highlighting the journey of learning and
+                    personal advancement."</p>
+                <p class="text-gray-600 leading-relaxed text-lg font-medium">Leading with a vision founded on
+                    mentorship, our MD emphasizes the profound impact a mentor has on a young individual's growth and
+                    development.</p>
             </div>
         </div>
     </section>
@@ -170,27 +178,60 @@
     <section class="py-24 bg-white px-6">
         <div class="max-w-7xl mx-auto">
             <h2 class="text-4xl font-black uppercase tracking-tighter text-center mb-16">IMPACT IN <span
-                    class="text-brand-red text-brand-red">PICTURES</span></h2>
+                    class="text-brand-red">PICTURES</span></h2>
             <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
-                <img src="images/educational arm.jpeg"
+                <img src="Images/educational arm.jpeg"
                     class="w-full h-72 object-cover rounded-[2rem] shadow-lg hover:scale-105 transition duration-500">
-                <img src="images/hero.jpeg"
+                <img src="Images/hero.jpeg"
                     class="w-full h-72 object-cover rounded-[2rem] shadow-lg hover:scale-105 transition duration-500">
-                <img src="images/Leaadership club.jpeg"
+                <img src="Images/Leaadership club.jpeg"
                     class="w-full h-72 object-cover rounded-[2rem] shadow-lg hover:scale-105 transition duration-500">
-                <img src="images/spiritual forum.jpeg"
+                <img src="Images/spiritual forum.jpeg"
                     class="w-full h-72 object-cover rounded-[2rem] shadow-lg hover:scale-105 transition duration-500">
             </div>
         </div>
     </section>
 
+    <section id="partnership" class="py-20 bg-gray-50 px-6">
+        <div class="max-w-3xl mx-auto text-center">
+            <h2 class="text-3xl font-black uppercase tracking-tighter mb-4">Partner with the Mission</h2>
+            <p class="text-gray-500 text-sm mb-8">If you feel led to support our work in Kaduna, click below to view our
+                official foundation account details.</p>
+            <button onclick="toggleBank()"
+                class="border-2 border-black px-10 py-4 rounded-full font-black text-[10px] uppercase tracking-widest hover:bg-black hover:text-white transition duration-300">View
+                Support Details</button>
+            <div id="bankToggle" class="bank-details mt-10 bg-white p-10 rounded-[2.5rem] shadow-inner text-left">
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    <div>
+                        <p class="text-[9px] font-bold text-gray-400 uppercase tracking-widest mb-1">Bank Name</p>
+                        <p class="font-black text-black">FCMB</p>
+                    </div>
+                    <div>
+                        <p class="text-[9px] font-bold text-gray-400 uppercase tracking-widest mb-1">Account Number</p>
+                        <p class="font-black text-brand-red text-xl">2001550745</p>
+                    </div>
+                    <div>
+                        <p class="text-[9px] font-bold text-gray-400 uppercase tracking-widest mb-1">Account Name</p>
+                        <p class="font-bold text-[10px] text-black leading-tight uppercase">Inspiring Teens
+                            International Foundation</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <footer
-        class="bg-black text-white py-16 text-center text-[10px] tracking-[0.4em] uppercase border-t-8 border-brand-yellow">
+        class="bg-black text-white py-12 text-center text-[10px] tracking-[0.4em] uppercase border-t-8 border-brand-yellow">
         &copy; 2026 Inspiring Teens International Foundation
     </footer>
 
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-    <script>AOS.init({ duration: 1000, once: true });</script>
+    <script>
+        AOS.init({ duration: 1000, once: true });
+        function toggleBank() {
+            document.getElementById('bankToggle').classList.toggle('active');
+        }
+    </script>
 </body>
 
 </html>
