@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Impact Programs | Inspiring Teens International Foundation</title>
+    <title>Impact Arms | Inspiring Teens International Foundation</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800;900&display=swap"
         rel="stylesheet">
@@ -44,7 +44,7 @@
             border: none;
         }
 
-        /* Reduced Height Hero Section with Dark Overlay (RGB 10,10,10) */
+        /* Hero Overlay (RGB 10,10,10) */
         .hero-overlay-dark {
             background: linear-gradient(rgba(10, 10, 10, 0.8), rgba(10, 10, 10, 0.95)), url('Images/programs_hero_bg.jpg');
             background-size: cover;
@@ -60,7 +60,16 @@
             transition: 0.4s ease-out;
         }
 
-        /* Discreet Bank Toggle */
+        /* Back to Top Button */
+        #backToTop {
+            display: none;
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            z-index: 99;
+        }
+
+        /* Hidden Bank Detail Toggle */
         .bank-details {
             display: none;
         }
@@ -82,6 +91,24 @@
             }
         }
 
+        /* Mobile Menu */
+        .mobile-menu-active {
+            display: flex !important;
+            animation: slideDown 0.4s ease-out;
+        }
+
+        @keyframes slideDown {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
         @media (max-width: 768px) {
             .hero-title {
                 font-size: 2.5rem !important;
@@ -94,12 +121,8 @@
 
     <header class="nav-transparent py-4 px-6">
         <div class="max-w-7xl mx-auto flex justify-between items-center">
-            <div class="flex items-center space-x-3">
-                <div
-                    class="w-10 h-10 bg-brand-yellow rounded-full flex items-center justify-center font-black text-black">
-                    IT</div>
-                <div class="font-black text-sm md:text-lg uppercase leading-none text-white">Inspiring <span
-                        class="text-brand-yellow">Teens</span></div>
+            <div class="flex items-center">
+                <a href="index.html"><img src="ITIF.png" alt="ITIF Logo" class="h-12 md:h-16"></a>
             </div>
             <nav class="hidden lg:flex space-x-8 text-[11px] font-bold uppercase tracking-widest text-white">
                 <a href="index.html" class="hover:text-brand-yellow transition">Home</a>
@@ -107,39 +130,43 @@
                 <a href="programs.html" class="text-brand-yellow">Programs</a>
                 <a href="contact.html" class="hover:text-brand-yellow transition">Contact</a>
             </nav>
+            <button onclick="toggleMenu()" class="lg:hidden text-white focus:outline-none">
+                <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7">
+                    </path>
+                </svg>
+            </button>
             <a href="#partnership"
-                class="bg-brand-red text-white px-6 py-2 rounded-full font-bold text-[10px] uppercase shadow-lg">Support</a>
+                class="hidden lg:block bg-brand-red text-white px-6 py-2 rounded-full font-bold text-[10px] uppercase shadow-lg">Support</a>
+        </div>
+        <div id="mobileMenu"
+            class="hidden absolute top-full left-0 w-full bg-black/95 p-10 border-t border-white/10 flex-col space-y-6 text-center text-white font-bold uppercase tracking-widest text-xs">
+            <a href="index.html" onclick="toggleMenu()">Home</a>
+            <a href="about.html" onclick="toggleMenu()">About Us</a>
+            <a href="programs.html" class="text-brand-yellow" onclick="toggleMenu()">Programs</a>
+            <a href="contact.html" onclick="toggleMenu()">Contact</a>
         </div>
     </header>
 
-    <section class="relative py-32 md:py-40 text-center text-white hero-overlay-dark">
+    <section class="relative py-32 md:py-48 text-center text-white hero-overlay-dark">
         <div class="max-w-7xl mx-auto px-6 relative z-10" data-aos="fade-down">
-            <h1 class="hero-title text-4xl md:text-7xl font-black uppercase tracking-tighter">
-                IMPACT <span class="text-brand-yellow">ARMS</span>
-            </h1>
-            <p class="text-brand-yellow mt-4 font-bold uppercase tracking-[0.3em] text-[10px]">Clarity • Inspiration •
-                Enlightenment</p>
+            <h1 class="hero-title text-4xl md:text-8xl font-black uppercase tracking-tighter">Impact <span
+                    class="text-brand-yellow">Arms</span></h1>
+            <p class="text-brand-yellow mt-4 font-bold uppercase tracking-[0.3em] text-[10px]">Clarity •
+                Inspiration • Enlightenment</p>
         </div>
     </section>
 
     <section class="py-24 px-6 bg-white">
         <div class="max-w-7xl mx-auto">
-
-            <div class="mb-16 text-center">
-                <span class="text-brand-red font-black uppercase tracking-widest text-xs">Our Wings</span>
-                <h2 class="text-3xl md:text-5xl font-black mt-2 uppercase tracking-tighter">Comprehensive Mentorship
-                </h2>
-            </div>
-
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
 
                 <div class="bg-white rounded-[2.5rem] overflow-hidden shadow-xl border border-gray-100 card-hover"
                     data-aos="fade-up">
-                    <div class="relative h-64">
-                        <img src="Images/spiritual forum.jpeg" class="w-full h-full object-cover">
+                    <div class="relative h-64"><img src="Images/program_tsp.jpg" class="w-full h-full object-cover">
                         <div class="absolute inset-0 card-img-overlay flex items-end p-8">
                             <h3 class="text-white font-black text-xl uppercase tracking-tighter leading-none">Teens
-                                Spiritual <br>Platform (TSP)</h3>
+                                Spiritual Platform (TSP)</h3>
                         </div>
                     </div>
                     <div class="p-8">
@@ -152,11 +179,10 @@
 
                 <div class="bg-white rounded-[2.5rem] overflow-hidden shadow-xl border border-gray-100 card-hover"
                     data-aos="fade-up" data-aos-delay="100">
-                    <div class="relative h-64">
-                        <img src="Images/educational arm.jpeg" class="w-full h-full object-cover">
+                    <div class="relative h-64"><img src="Images/program_tea.jpg" class="w-full h-full object-cover">
                         <div class="absolute inset-0 card-img-overlay flex items-end p-8">
                             <h3 class="text-white font-black text-xl uppercase tracking-tighter leading-none">Teens
-                                Education <br>Arm (TEA)</h3>
+                                Education Arm (TEA)</h3>
                         </div>
                     </div>
                     <div class="p-8">
@@ -170,16 +196,15 @@
 
                 <div class="bg-white rounded-[2.5rem] overflow-hidden shadow-xl border border-gray-100 card-hover"
                     data-aos="fade-up" data-aos-delay="200">
-                    <div class="relative h-64">
-                        <img src="Images/teen mentorship.jpeg" class="w-full h-full object-cover">
+                    <div class="relative h-64"><img src="Images/program_tlc.jpg" class="w-full h-full object-cover">
                         <div class="absolute inset-0 card-img-overlay flex items-end p-8">
                             <h3 class="text-white font-black text-xl uppercase tracking-tighter leading-none">Teens
-                                Leadership <br>Club (TLC)</h3>
+                                Leadership Club (TLC)</h3>
                         </div>
                     </div>
                     <div class="p-8">
-                        <p class="text-gray-500 text-sm mb-6">Inculcating sound morals and leadership values in youth.
-                        </p>
+                        <p class="text-gray-500 text-sm mb-6">Inculcating sound morals and leadership values in
+                            youth.</p>
                         <div class="w-full bg-gray-100 h-2 rounded-full">
                             <div class="bg-brand-red h-full w-[60%] rounded-full"></div>
                         </div>
@@ -188,17 +213,15 @@
 
                 <div class="bg-white rounded-[2.5rem] overflow-hidden shadow-xl border border-gray-100 card-hover"
                     data-aos="fade-up">
-                    <div class="relative h-64">
-                        <img src="Images/teen leadership.jpeg" class="w-full h-full object-cover">
+                    <div class="relative h-64"><img src="Images/program_tma.jpg" class="w-full h-full object-cover">
                         <div class="absolute inset-0 card-img-overlay flex items-end p-8">
                             <h3 class="text-white font-black text-xl uppercase tracking-tighter leading-none">Mentorship
-                                <br>Academy (TMA)
-                            </h3>
+                                Academy (TMA)</h3>
                         </div>
                     </div>
                     <div class="p-8">
-                        <p class="text-gray-500 text-sm mb-6">Sustainable character development for peak performance.
-                        </p>
+                        <p class="text-gray-500 text-sm mb-6">Sustainable character development for peak
+                            performance.</p>
                         <div class="w-full bg-gray-100 h-2 rounded-full">
                             <div class="bg-brand-yellow h-full w-[50%] rounded-full"></div>
                         </div>
@@ -207,13 +230,10 @@
 
                 <div class="bg-white rounded-[2.5rem] overflow-hidden shadow-xl border border-gray-100 card-hover"
                     data-aos="fade-up" data-aos-delay="100">
-                    <div class="relative h-64">
-                        <img src="Images/WhatsApp Image 2026-02-21 at 10.28.19 PM (1).jpeg"
-                            class="w-full h-full object-cover">
+                    <div class="relative h-64"><img src="Images/program_trc.jpg" class="w-full h-full object-cover">
                         <div class="absolute inset-0 card-img-overlay flex items-end p-8">
                             <h3 class="text-white font-black text-xl uppercase tracking-tighter leading-none">Resource
-                                <br>Center (TRC)
-                            </h3>
+                                Center (TRC)</h3>
                         </div>
                     </div>
                     <div class="p-8">
@@ -226,16 +246,15 @@
 
                 <div class="bg-white rounded-[2.5rem] overflow-hidden shadow-xl border border-gray-100 card-hover"
                     data-aos="fade-up" data-aos-delay="200">
-                    <div class="relative h-64">
-                        <img src="Images/Teens Counselling Platform.jpeg" class="w-full h-full object-cover">
+                    <div class="relative h-64"><img src="Images/program_tcp.jpg" class="w-full h-full object-cover">
                         <div class="absolute inset-0 card-img-overlay flex items-end p-8">
                             <h3 class="text-white font-black text-xl uppercase tracking-tighter leading-none">Counseling
-                                <br>Platform (TCP)
-                            </h3>
+                                Platform (TCP)</h3>
                         </div>
                     </div>
                     <div class="p-8">
-                        <p class="text-gray-500 text-sm mb-6">Professional counseling using a Bible-based framework.</p>
+                        <p class="text-gray-500 text-sm mb-6">Professional counseling using a Bible-based
+                            framework.</p>
                         <div class="w-full bg-gray-100 h-2 rounded-full">
                             <div class="bg-[#03CDC3] h-full w-[30%] rounded-full"></div>
                         </div>
@@ -244,12 +263,10 @@
 
                 <div class="bg-white rounded-[2.5rem] overflow-hidden shadow-xl border border-gray-100 card-hover"
                     data-aos="fade-up">
-                    <div class="relative h-64">
-                        <img src="Images/Teens Skills Acquisition Platform.jpeg" class="w-full h-full object-cover">
+                    <div class="relative h-64"><img src="Images/program_tsap.jpg" class="w-full h-full object-cover">
                         <div class="absolute inset-0 card-img-overlay flex items-end p-8">
                             <h3 class="text-white font-black text-xl uppercase tracking-tighter leading-none">Skills
-                                <br>Acquisition (TSAP)
-                            </h3>
+                                Acquisition (TSAP)</h3>
                         </div>
                     </div>
                     <div class="p-8">
@@ -262,12 +279,10 @@
 
                 <div class="bg-white rounded-[2.5rem] overflow-hidden shadow-xl border border-gray-100 card-hover"
                     data-aos="fade-up" data-aos-delay="100">
-                    <div class="relative h-64">
-                        <img src="Images/Teen to Teen Impart Platform.jpeg" class="w-full h-full object-cover">
+                    <div class="relative h-64"><img src="Images/program_totip.jpg" class="w-full h-full object-cover">
                         <div class="absolute inset-0 card-img-overlay flex items-end p-8">
                             <h3 class="text-white font-black text-xl uppercase tracking-tighter leading-none">Outreach &
-                                <br>Talent (TOTIP)
-                            </h3>
+                                Talent (TOTIP)</h3>
                         </div>
                     </div>
                     <div class="p-8">
@@ -280,11 +295,10 @@
 
                 <div class="bg-white rounded-[2.5rem] overflow-hidden shadow-xl border border-gray-100 card-hover"
                     data-aos="fade-up" data-aos-delay="200">
-                    <div class="relative h-64">
-                        <img src="Images/Teens Sports Club.jpeg" class="w-full h-full object-cover">
+                    <div class="relative h-64"><img src="Images/program_tsc.jpg" class="w-full h-full object-cover">
                         <div class="absolute inset-0 card-img-overlay flex items-end p-8">
                             <h3 class="text-white font-black text-xl uppercase tracking-tighter leading-none">Teens
-                                Sports <br>Club (TSC)</h3>
+                                Sports Club (TSC)</h3>
                         </div>
                     </div>
                     <div class="p-8">
@@ -297,11 +311,10 @@
 
                 <div class="bg-white rounded-[2.5rem] overflow-hidden shadow-xl border border-gray-100 card-hover lg:col-start-2"
                     data-aos="fade-up">
-                    <div class="relative h-64">
-                        <img src="Images/teen community.jpeg" class="w-full h-full object-cover">
+                    <div class="relative h-64"><img src="Images/program_tpf.jpg" class="w-full h-full object-cover">
                         <div class="absolute inset-0 card-img-overlay flex items-end p-8">
                             <h3 class="text-white font-black text-xl uppercase tracking-tighter leading-none">
-                                Teens/Parents <br>Forum (TPF)</h3>
+                                Teens/Parents Forum (TPF)</h3>
                         </div>
                     </div>
                     <div class="p-8">
@@ -311,19 +324,17 @@
                         </div>
                     </div>
                 </div>
-
             </div>
         </div>
     </section>
 
-    <section id="partnership" class="py-24 bg-gray-50 px-6">
+    <section id="partnership" class="py-20 bg-gray-50 px-6">
         <div class="max-w-3xl mx-auto text-center">
-            <h2 class="text-3xl font-black uppercase tracking-tighter mb-4">Support an Arm</h2>
-            <p class="text-gray-500 text-sm mb-8">Directly fund any of our 10 programs by partnering with us.</p>
+            <h2 class="text-3xl font-black uppercase tracking-tighter mb-4">Support Our Impact</h2>
+            <p class="text-gray-500 text-sm mb-8">Directly fund any of our 10 arms by partnering with us.</p>
             <button onclick="toggleBank()"
-                class="border-2 border-black px-10 py-4 rounded-full font-black text-[10px] uppercase tracking-widest hover:bg-black hover:text-white transition duration-300">
-                View Support Details
-            </button>
+                class="border-2 border-black px-10 py-4 rounded-full font-black text-[10px] uppercase tracking-widest hover:bg-black hover:text-white transition duration-300">View
+                Support Details</button>
             <div id="bankToggle"
                 class="bank-details mt-10 bg-white p-10 rounded-[2.5rem] shadow-xl border border-gray-100 text-left">
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
@@ -345,17 +356,25 @@
         </div>
     </section>
 
+    <button id="backToTop" onclick="scrollToTop()"
+        class="bg-brand-red text-white p-4 rounded-full shadow-2xl hover:bg-black transition duration-300">
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 10l7-7m0 0l7 7m-7-7v18"></path>
+        </svg>
+    </button>
+
     <footer
         class="bg-black text-white py-12 text-center text-[10px] tracking-[0.4em] uppercase border-t-8 border-brand-yellow">
-        &copy; 2026 Inspiring Teens International Foundation
-    </footer>
+        &copy; 2026 Inspiring Teens International Foundation</footer>
 
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script>
         AOS.init({ duration: 1000, once: true });
-        function toggleBank() {
-            document.getElementById('bankToggle').classList.toggle('active');
-        }
+        function toggleMenu() { document.getElementById('mobileMenu').classList.toggle('mobile-menu-active'); }
+        function toggleBank() { document.getElementById('bankToggle').classList.toggle('active'); }
+        const topBtn = document.getElementById("backToTop");
+        window.onscroll = function () { if (document.body.scrollTop > 400 || document.documentElement.scrollTop > 400) { topBtn.style.display = "block"; } else { topBtn.style.display = "none"; } };
+        function scrollToTop() { window.scrollTo({ top: 0, behavior: 'smooth' }); }
     </script>
 </body>
 
