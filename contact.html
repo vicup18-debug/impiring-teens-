@@ -11,11 +11,16 @@
         rel="stylesheet">
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <style>
+        html,
         body {
             font-family: 'Montserrat', sans-serif;
             background-color: #ffffff;
             color: #1a1a1a;
             scroll-behavior: smooth;
+            overflow-x: hidden !important;
+            max-width: 100%;
+            width: 100%;
+            position: relative;
         }
 
         .bg-brand-yellow {
@@ -45,6 +50,23 @@
         .btn-hover:hover {
             transform: translateY(-3px);
             box-shadow: 0 10px 25px rgba(255, 0, 0, 0.3);
+        }
+
+        .mobile-menu-active {
+            display: flex !important;
+            animation: slideDown 0.4s ease-out;
+        }
+
+        @keyframes slideDown {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
     </style>
 </head>
