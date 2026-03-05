@@ -95,19 +95,33 @@
 
     <header class="nav-transparent py-4 px-6">
         <div class="max-w-7xl mx-auto flex justify-between items-center">
-            <div class="flex items-center space-x-3">
-                <div class="flex items-center">
-                    <a href="index.html"><img src="images/ITIF.png" alt="ITIF Logo" class="h-12 md:h-16"></a>
-                </div>
-            </div>
+            <a href="index.html"><img src="ITIF.png" alt="ITIF Logo" class="h-12 md:h-16"></a>
+
             <nav class="hidden lg:flex space-x-8 text-[11px] font-bold uppercase tracking-widest text-white">
                 <a href="index.html" class="hover:text-brand-yellow transition">Home</a>
-                <a href="about.html" class="text-brand-yellow">About Us</a>
+                <a href="about.html" class="hover:text-brand-yellow transition">About Us</a>
                 <a href="programs.html" class="hover:text-brand-yellow transition">Programs</a>
                 <a href="contact.html" class="hover:text-brand-yellow transition">Contact</a>
             </nav>
-            <a href="#partnership"
-                class="bg-brand-red text-white px-6 py-2 rounded-full font-bold text-[10px] uppercase shadow-lg">Support</a>
+
+            <button onclick="toggleMenu()" class="lg:hidden text-white focus:outline-none">
+                <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7">
+                    </path>
+                </svg>
+            </button>
+
+            <a href="contact.html"
+                class="hidden lg:block bg-brand-red text-white px-6 py-2 rounded-full font-bold text-[10px] uppercase shadow-lg">Join
+                Us</a>
+        </div>
+
+        <div id="mobileMenu"
+            class="hidden absolute top-full left-0 w-full bg-black/95 p-10 border-t border-white/10 flex-col space-y-6 text-center text-white font-bold uppercase tracking-widest text-xs z-50">
+            <a href="index.html" onclick="toggleMenu()">Home</a>
+            <a href="about.html" onclick="toggleMenu()">About Us</a>
+            <a href="programs.html" onclick="toggleMenu()">Programs</a>
+            <a href="contact.html" class="text-brand-yellow" onclick="toggleMenu()">Contact</a>
         </div>
     </header>
 
@@ -226,7 +240,15 @@
 
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script>
+        // 1. Initialize Animations
         AOS.init({ duration: 1000, once: true });
+
+        // 2. Mobile Menu Toggle (Fixes the hamburger button)
+        function toggleMenu() {
+            document.getElementById('mobileMenu').classList.toggle('mobile-menu-active');
+        }
+
+        // 3. Bank Details Toggle
         function toggleBank() {
             document.getElementById('bankToggle').classList.toggle('active');
         }
