@@ -116,7 +116,7 @@
 
             <nav class="hidden lg:flex space-x-8 text-[11px] font-bold uppercase tracking-widest text-white">
                 <a href="index.html" class="hover:text-brand-yellow transition">Home</a>
-                <a href="about.html" class="hover:text-brand-yellow transition">About Us</a>
+                <a href="about.html" class="text-brand-yellow hover:text-brand-yellow transition">About Us</a>
                 <a href="programs.html" class="hover:text-brand-yellow transition">Programs</a>
                 <a href="contact.html" class="hover:text-brand-yellow transition">Contact</a>
             </nav>
@@ -136,9 +136,9 @@
         <div id="mobileMenu"
             class="hidden absolute top-full left-0 w-full bg-black/95 p-10 border-t border-white/10 flex-col space-y-6 text-center text-white font-bold uppercase tracking-widest text-xs z-50">
             <a href="index.html" onclick="toggleMenu()">Home</a>
-            <a href="about.html" onclick="toggleMenu()">About Us</a>
+            <a href="about.html" class="text-brand-yellow" onclick="toggleMenu()">About Us</a>
             <a href="programs.html" onclick="toggleMenu()">Programs</a>
-            <a href="contact.html" class="text-brand-yellow" onclick="toggleMenu()">Contact</a>
+            <a href="contact.html" onclick="toggleMenu()">Contact</a>
         </div>
     </header>
 
@@ -259,7 +259,6 @@
     <script>
         AOS.init({ duration: 1000, once: true });
 
-        // This is the function the hamburger button is looking for
         function toggleMenu() {
             document.getElementById('mobileMenu').classList.toggle('mobile-menu-active');
         }
