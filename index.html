@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Inspiring Teens International | Home</title>
-    <link rel="icon" type="image/png" href="Images/ITIF.png">
+    <link rel="icon" type="image/png" href="Images/logo.png">
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800;900&display=swap"
         rel="stylesheet">
@@ -51,8 +51,10 @@
         }
 
         /* Hero Dark Overlay (RGB 10,10,10) */
-        .hero-overlay {
-            background: linear-gradient(rgba(10, 10, 10, 0.6), rgba(10, 10, 10, 0.85));
+        .hero-overlay-dark {
+            background: linear-gradient(rgba(10, 10, 10, 0.85), rgba(10, 10, 10, 0.95)), url('Images/hero.jpeg');
+            background-size: cover;
+            background-position: center;
         }
 
         /* Slim Stats Bar */
@@ -122,9 +124,7 @@
     <header class="nav-transparent py-4 px-6">
         <div class="max-w-7xl mx-auto flex justify-between items-center">
             <div class="flex items-center">
-                <a href="index.html">
-                    <img src="Images/ITIF.png" alt="Inspiring Teens Logo" class="h-12 md:h-16">
-                </a>
+                <a href="index.html"><img src="Images/logo.png" alt="ITIF Logo" class="h-20 md:h-28 drop-shadow-lg"></a>
             </div>
 
             <nav class="hidden lg:flex space-x-8 text-[11px] font-bold uppercase tracking-widest text-white">
@@ -158,27 +158,33 @@
         </div>
     </header>
 
-    <section class="relative min-h-[90vh] flex items-center bg-black overflow-hidden">
-        <img src="Images/hero.jpeg" class="absolute inset-0 w-full h-full object-cover" alt="Mentorship Impartation">
-        <div class="absolute inset-0 hero-overlay"></div>
-        <div class="max-w-7xl mx-auto px-6 relative z-10 text-center md:text-left">
-            <span class="text-brand-yellow font-white uppercase tracking-[0.4em] text-xs mb-4 block"
-                data-aos="fade-right">Give them a chance.</span>
-            <h1 class="text-5xl md:text-7xl font-black uppercase tracking-tighter mb-6 text-white">
-                NURTURING THE LEADERS <span class="text-brand-yellow">OF TOMORROW</span> TODAY.
-            </h1>
-            <p class="max-w-xl mx-auto md:mx-0 text-gray-200 text-sm md:text-lg font-medium mb-10 leading-relaxed"
-                data-aos="fade-up" data-aos-delay="200">
-                Preserving the future of teenagers through Christian-based mentorship and a Bible-based support system.
-            </p>
-            <div class="flex flex-col sm:flex-row justify-center md:justify-start gap-4 px-6 md:px-0" data-aos="fade-up"
-                data-aos-delay="400">
-                <a href="contact.html"
-                    class="bg-brand-red text-white w-full sm:w-auto px-8 py-4 rounded-full font-bold uppercase text-xs btn-shadow text-center">Join
-                    Our Team</a>
-                <a href="about.html"
-                    class="bg-white text-black w-full sm:w-auto px-8 py-4 rounded-full font-bold uppercase text-xs btn-shadow text-center">Learn
-                    More</a>
+    <section class="relative hero-overlay-dark py-32 md:py-48 text-center text-white">
+        <div class="max-w-5xl mx-auto px-6 relative z-10" data-aos="fade-down">
+
+            <div
+                class="bg-black/50 backdrop-blur-md p-8 md:p-14 rounded-[3rem] border border-white/20 shadow-2xl mx-auto">
+
+                <p class="text-brand-yellow font-bold uppercase tracking-[0.3em] text-xs mb-4">Give Them A Chance</p>
+
+                <h1 class="text-5xl md:text-7xl font-black uppercase tracking-tighter mb-6 text-white leading-tight">
+                    Nurturing The <span class="text-brand-yellow">Leaders</span><br> Of Tomorrow <span
+                        class="text-[#03CDC3]">Today</span>.
+                </h1>
+
+                <p class="text-gray-100 leading-relaxed text-lg md:text-xl font-medium mb-10 max-w-3xl mx-auto">
+                    Preserving the future of teenagers through Christian-based mentorship and a Bible-based support
+                    system.
+                </p>
+
+                <div class="flex flex-col sm:flex-row justify-center items-center gap-4">
+                    <a href="contact.html"
+                        class="bg-brand-red text-white px-10 py-4 rounded-full font-black text-xs uppercase tracking-widest hover:scale-105 transition duration-300 shadow-lg w-full sm:w-auto">Join
+                        Our Team</a>
+                    <a href="about.html"
+                        class="bg-white text-black px-10 py-4 rounded-full font-black text-xs uppercase tracking-widest hover:scale-105 transition duration-300 shadow-lg w-full sm:w-auto">Learn
+                        More</a>
+                </div>
+
             </div>
         </div>
     </section>
