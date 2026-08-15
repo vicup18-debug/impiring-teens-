@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard | ITIF</title>
+    <link rel="icon" type="image/png" href="Images/logo.png">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Montserrat', sans-serif; background-color: #f3f4f6; }
+        .hidden-default { display: none; }
+        .loader {
+            border: 4px solid #f3f3f3;
+            border-top: 4px solid #FF0000;
+            border-radius: 50%;
+            width: 24px;
+            height: 24px;
+            animation: spin 1s linear infinite;
+        }
+        @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+    </style>
+</head>
+<body class="text-gray-800">
+
+    <!-- Login Screen -->
+    <div id="loginScreen" class="min-h-screen flex items-center justify-center bg-gray-900">
+        <div class="bg-white p-10 rounded-2xl shadow-2xl w-full max-w-md">
+            <div class="text-center mb-8">
+                <img src="Images/logo.png" alt="Logo" class="h-20 mx-auto drop-shadow-md mb-4">
+                <h2 class="text-2xl font-black uppercase tracking-tighter">Admin Login</h2>
+            </div>
+            <form id="loginForm" class="space-y-6">
+                <div>
+                    <label class="block text-sm font-bold text-gray-700 mb-2">Email</label>
+                    <input type="email" id="email" required class="w-full border-2 border-gray-200 rounded-xl p-3 focus:border-red-500 focus:outline-none transition">
+                </div>
+                <div>
+                    <label class="block text-sm font-bold text-gray-700 mb-2">Password</label>
+                    <input type="password" id="password" required class="w-full border-2 border-gray-200 rounded-xl p-3 focus:border-red-500 focus:outline-none transition">
+                </div>
+                <div id="loginError" class="text-red-500 text-sm font-bold hidden-default">Invalid email or password.</div>
+                <button type="submit" id="loginBtn" class="w-full bg-red-600 text-white font-black py-4 rounded-xl hover:bg-black transition-all shadow-lg flex justify-center items-center">
+                    <span id="loginBtnText">LOGIN</span>
+                    <div id="loginLoader" class="loader ml-2 hidden-default"></div>
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Dashboard Screen -->
+    <div id="dashboardScreen" class="hidden-default min-h-screen flex flex-col md:flex-row">
+        <!-- Sidebar -->
+        <aside class="bg-gray-900 text-white w-full md:w-64 flex-shrink-0">
+            <div class="p-6 text-center border-b border-gray-800">
+                <h2 class="font-black text-xl uppercase tracking-widest text-yellow-400">ITIF Admin</h2>
+            </div>
+            <nav class="p-4 space-y-2">
+                <button onclick="showTab('statsTab')" class="tab-btn w-full text-left px-4 py-3 rounded-lg hover:bg-gray-800 font-bold text-sm bg-gray-800 transition">Stats Section</button>
+                <button onclick="showTab('eventsTab')" class="tab-btn w-full text-left px-4 py-3 rounded-lg hover:bg-gray-800 font-bold text-sm transition">Events Section</button>
+                <button onclick="showTab('programsTab')" class="tab-btn w-full text-left px-4 py-3 rounded-lg hover:bg-gray-800 font-bold text-sm transition">Programs (Impact Arms)</button>
+                <button id="logoutBtn" class="w-full text-left px-4 py-3 rounded-lg hover:bg-red-600 font-bold text-sm text-red-400 hover:text-white transition mt-8">Logout</button>
+            </nav>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="flex-1 p-6 md:p-10 overflow-y-auto h-screen bg-gray-50 relative">
+            
+            <!-- Toast Notification -->
+            <div id="toast" class="fixed top-5 right-5 bg-green-500 text-white px-6 py-3 rounded-lg shadow-xl font-bold transition-opacity duration-300 opacity-0 pointer-events-none z-50">
+                Changes Saved Successfully!
+            </div>
+
+            <!-- Stats Tab -->
+            <div id="statsTab" class="tab-content max-w-4xl mx-auto">
+                <div class="bg-white rounded-2xl shadow-sm border border-gray-100 p-8">
+                    <h3 class="text-2xl font-black uppercase mb-6">Edit Stats Bar (Homepage)</h3>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-8" id="statsContainer">
+                        <!-- Populated by JS -->
+                    </div>
+                    <button onclick="saveStats()" class="mt-8 bg-black text-white px-8 py-3 rounded-xl font-bold uppercase text-sm hover:bg-red-600 transition">Save Stats</button>
+                </div>
+            </div>
+
+            <!-- Events Tab -->
+            <div id="eventsTab" class="tab-content hidden-default max-w-4xl mx-auto">
+                <div class="bg-white rounded-2xl shadow-sm border border-gray-100 p-8">
+                    <h3 class="text-2xl font-black uppercase mb-6">Edit Global Event (Homepage)</h3>
+                    <div class="space-y-6">
+                        <div>
+                            <label class="block text-sm font-bold text-gray-700 mb-2">Event Title</label>
+                            <input type="text" id="eventTitle" class="w-full border-2 border-gray-200 rounded-xl p-3 focus:border-red-500 outline-none">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-bold text-gray-700 mb-2">Event Subtitle (Italic text)</label>
+                            <input type="text" id="eventSubtitle" class="w-full border-2 border-gray-200 rounded-xl p-3 focus:border-red-500 outline-none">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-bold text-gray-700 mb-2">Event Description</label>
+                            <textarea id="eventDesc" rows="4" class="w-full border-2 border-gray-200 rounded-xl p-3 focus:border-red-500 outline-none"></textarea>
+                        </div>
+                        <div>
+                            <label class="block text-sm font-bold text-gray-700 mb-2">Year Badge</label>
+                            <input type="text" id="eventYear" class="w-full border-2 border-gray-200 rounded-xl p-3 focus:border-red-500 outline-none w-32">
+                        </div>
+                    </div>
+                    <button onclick="saveEvent()" class="mt-8 bg-black text-white px-8 py-3 rounded-xl font-bold uppercase text-sm hover:bg-red-600 transition">Save Event</button>
+                </div>
+            </div>
+
+            <!-- Programs Tab -->
+            <div id="programsTab" class="tab-content hidden-default max-w-5xl mx-auto">
+                <div class="bg-white rounded-2xl shadow-sm border border-gray-100 p-8">
+                    <h3 class="text-2xl font-black uppercase mb-6">Edit Programs (Impact Arms)</h3>
+                    <p class="text-gray-500 mb-6 text-sm">Update the title, description, and upload a new image for each program. These changes reflect on the Programs page.</p>
+                    
+                    <div class="space-y-8" id="programsContainer">
+                        <!-- Populated by JS -->
+                    </div>
+                </div>
+            </div>
+
+        </main>
+    </div>
+
+    <!-- Application Logic -->
+    <script type="module">
+        import { auth, database, storage } from './firebase-config.js';
+        import { signInWithEmailAndPassword, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+        import { ref as dbRef, get, set, update, child } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-database.js";
+        import { ref as storageRef, uploadBytes, getDownloadURL } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-storage.js";
+
+        // Global UI State
+        const loginScreen = document.getElementById('loginScreen');
+        const dashboardScreen = document.getElementById('dashboardScreen');
+        const toast = document.getElementById('toast');
+
+        function showToast(msg = "Changes Saved Successfully!") {
+            toast.innerText = msg;
+            toast.style.opacity = "1";
+            setTimeout(() => toast.style.opacity = "0", 3000);
+        }
+
+        // --- AUTHENTICATION ---
+        onAuthStateChanged(auth, (user) => {
+            if (user) {
+                loginScreen.classList.add('hidden-default');
+                dashboardScreen.classList.remove('hidden-default');
+                dashboardScreen.classList.add('flex');
+                loadDashboardData();
+            } else {
+                loginScreen.classList.remove('hidden-default');
+                dashboardScreen.classList.add('hidden-default');
+                dashboardScreen.classList.remove('flex');
+            }
+        });
+
+        document.getElementById('loginForm').addEventListener('submit', (e) => {
+            e.preventDefault();
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+            const loginBtnText = document.getElementById('loginBtnText');
+            const loginLoader = document.getElementById('loginLoader');
+            const loginError = document.getElementById('loginError');
+
+            loginBtnText.classList.add('hidden-default');
+            loginLoader.classList.remove('hidden-default');
+            loginError.classList.add('hidden-default');
+
+            signInWithEmailAndPassword(auth, email, password)
+                .catch((error) => {
+                    loginError.innerText = error.message;
+                    loginError.classList.remove('hidden-default');
+                })
+                .finally(() => {
+                    loginBtnText.classList.remove('hidden-default');
+                    loginLoader.classList.add('hidden-default');
+                });
+        });
+
+        document.getElementById('logoutBtn').addEventListener('click', () => {
+            signOut(auth);
+        });
+
+        // --- TABS LOGIC ---
+        window.showTab = (tabId) => {
+            document.querySelectorAll('.tab-content').forEach(el => el.classList.add('hidden-default'));
+            document.getElementById(tabId).classList.remove('hidden-default');
+            
+            document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('bg-gray-800'));
+            event.currentTarget.classList.add('bg-gray-800');
+        };
+
+        // --- DATA LOADING & SAVING ---
+        async function loadDashboardData() {
+            try {
+                const snapshot = await get(dbRef(database));
+                if (snapshot.exists()) {
+                    const data = snapshot.val();
+                    populateStats(data.stats);
+                    populateEvent(data.events);
+                    populatePrograms(data.programs);
+                } else {
+                    console.log("No data available in DB yet. Using defaults.");
+                    populatePrograms({}); // Load empty form template
+                }
+            } catch (error) {
+                console.error("Error loading data:", error);
+            }
+        }
+
+        // STATS
+        function populateStats(statsData = {}) {
+            const container = document.getElementById('statsContainer');
+            container.innerHTML = '';
+            for (let i = 1; i <= 4; i++) {
+                const key = 'stat' + i;
+                const stat = statsData[key] || { value: '', label: '' };
+                container.innerHTML += `
+                    <div class="bg-gray-50 p-6 rounded-xl border border-gray-200">
+                        <h4 class="font-bold text-gray-500 mb-4 uppercase text-xs">Stat Item ${i}</h4>
+                        <div class="space-y-4">
+                            <div>
+                                <label class="block text-xs font-bold text-gray-700 mb-1">Value (e.g. 10, 100%)</label>
+                                <input type="text" id="${key}_val" value="${stat.value}" class="w-full border-2 border-gray-200 rounded-lg p-2 outline-none focus:border-red-500">
+                            </div>
+                            <div>
+                                <label class="block text-xs font-bold text-gray-700 mb-1">Label (e.g. Active Platforms)</label>
+                                <input type="text" id="${key}_label" value="${stat.label}" class="w-full border-2 border-gray-200 rounded-lg p-2 outline-none focus:border-red-500">
+                            </div>
+                        </div>
+                    </div>
+                `;
+            }
+        }
+
+        window.saveStats = async () => {
+            const updates = {};
+            for (let i = 1; i <= 4; i++) {
+                updates['stats/stat' + i] = {
+                    value: document.getElementById('stat' + i + '_val').value,
+                    label: document.getElementById('stat' + i + '_label').value
+                };
+            }
+            await update(dbRef(database), updates);
+            showToast();
+        };
+
+        // EVENTS
+        function populateEvent(eventData = {}) {
+            document.getElementById('eventTitle').value = eventData.title || '';
+            document.getElementById('eventSubtitle').value = eventData.subtitle || '';
+            document.getElementById('eventDesc').value = eventData.description || '';
+            document.getElementById('eventYear').value = eventData.year || '';
+        }
+
+        window.saveEvent = async () => {
+            const updates = {
+                'events/title': document.getElementById('eventTitle').value,
+                'events/subtitle': document.getElementById('eventSubtitle').value,
+                'events/description': document.getElementById('eventDesc').value,
+                'events/year': document.getElementById('eventYear').value
+            };
+            await update(dbRef(database), updates);
+            showToast();
+        };
+
+        // PROGRAMS
+        const defaultPrograms = [
+            "Teens Spiritual Platform (TSP)", "Teens Education Arm (TEA)", "Teens Leadership Club (TLC)", 
+            "Mentorship Academy (TMA)", "Resource Center (TRC)", "Counseling Platform (TCP)", 
+            "Skills Acquisition (TSAP)", "Outreach & Talent (TOTIP)", "Teens Sports Club (TSC)", "Teens/Parents Forum (TPF)"
+        ];
+
+        function populatePrograms(progData = {}) {
+            const container = document.getElementById('programsContainer');
+            container.innerHTML = '';
+            
+            for (let i = 1; i <= 10; i++) {
+                const key = 'prog' + i;
+                const p = progData[key] || { title: defaultPrograms[i-1] || '', description: '', imageUrl: '' };
+                const imgPreview = p.imageUrl ? `<img src="${p.imageUrl}" class="h-20 w-32 object-cover rounded-lg border-2 border-gray-200">` : `<div class="h-20 w-32 bg-gray-200 rounded-lg flex items-center justify-center text-xs text-gray-400 border-2 border-dashed border-gray-300">No Image</div>`;
+
+                container.innerHTML += `
+                    <div class="bg-gray-50 p-6 rounded-xl border border-gray-200 flex flex-col md:flex-row gap-6">
+                        <div class="flex-shrink-0 flex flex-col items-center gap-3">
+                            <span class="font-black text-gray-400">#${i}</span>
+                            <div id="${key}_preview">${imgPreview}</div>
+                            <input type="file" id="${key}_file" accept="image/*" class="hidden">
+                            <label for="${key}_file" class="cursor-pointer text-xs font-bold text-red-600 hover:text-black">Change Image</label>
+                            <button id="${key}_uploadBtn" onclick="uploadProgramImage('${key}')" class="hidden-default bg-black text-white text-[10px] px-3 py-1 rounded uppercase">Upload</button>
+                            <div id="${key}_loader" class="loader hidden-default h-4 w-4 border-2"></div>
+                        </div>
+                        <div class="flex-1 space-y-4">
+                            <div>
+                                <label class="block text-xs font-bold text-gray-700 mb-1">Program Title</label>
+                                <input type="text" id="${key}_title" value="${p.title}" class="w-full border-2 border-gray-200 rounded-lg p-2 outline-none focus:border-red-500 font-bold">
+                            </div>
+                            <div>
+                                <label class="block text-xs font-bold text-gray-700 mb-1">Short Description</label>
+                                <textarea id="${key}_desc" rows="2" class="w-full border-2 border-gray-200 rounded-lg p-2 outline-none focus:border-red-500">${p.description}</textarea>
+                            </div>
+                            <button onclick="saveProgramText('${key}')" class="bg-gray-200 text-black px-4 py-2 rounded-lg font-bold text-xs hover:bg-gray-300 transition">Save Details</button>
+                        </div>
+                    </div>
+                `;
+
+                // Add listener to show upload button when file is selected
+                setTimeout(() => {
+                    document.getElementById(`${key}_file`).addEventListener('change', function() {
+                        if(this.files.length > 0) {
+                            document.getElementById(`${key}_uploadBtn`).classList.remove('hidden-default');
+                        }
+                    });
+                }, 100);
+            }
+        }
+
+        window.saveProgramText = async (key) => {
+            const updates = {
+                [`programs/${key}/title`]: document.getElementById(`${key}_title`).value,
+                [`programs/${key}/description`]: document.getElementById(`${key}_desc`).value
+            };
+            await update(dbRef(database), updates);
+            showToast(`Program ${key.replace('prog', '')} saved!`);
+        };
+
+        window.uploadProgramImage = async (key) => {
+            const fileInput = document.getElementById(`${key}_file`);
+            const file = fileInput.files[0];
+            if (!file) return;
+
+            const uploadBtn = document.getElementById(`${key}_uploadBtn`);
+            const loader = document.getElementById(`${key}_loader`);
+            
+            uploadBtn.classList.add('hidden-default');
+            loader.classList.remove('hidden-default');
+
+            try {
+                // Upload to Firebase Storage
+                const sRef = storageRef(storage, `programs/${key}_${Date.now()}_${file.name}`);
+                await uploadBytes(sRef, file);
+                const downloadURL = await getDownloadURL(sRef);
+
+                // Save URL to Realtime Database
+                await update(dbRef(database), {
+                    [`programs/${key}/imageUrl`]: downloadURL
+                });
+
+                // Update Preview
+                document.getElementById(`${key}_preview`).innerHTML = `<img src="${downloadURL}" class="h-20 w-32 object-cover rounded-lg border-2 border-gray-200">`;
+                showToast(`Image uploaded for Program ${key.replace('prog', '')}!`);
+            } catch (error) {
+                console.error("Upload error:", error);
+                alert("Failed to upload image. Make sure Storage rules allow it.");
+            } finally {
+                loader.classList.add('hidden-default');
+            }
+        };
+
+    </script>
+</body>
+</html>

@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Inspiring Teens International | Home</title>
-    <link rel="icon" type="image/png" href="Images/ITIF.png">
+    <link rel="icon" type="image/png" href="Images/logo.png">
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800;900&display=swap"
         rel="stylesheet">
@@ -37,7 +37,7 @@
         }
 
         .bg-brand-cyan {
-            background-color: #03CDC3;
+            background-color: #06b0ff;
         }
 
         /* Transparent Nav Fix */
@@ -51,8 +51,10 @@
         }
 
         /* Hero Dark Overlay (RGB 10,10,10) */
-        .hero-overlay {
-            background: linear-gradient(rgba(10, 10, 10, 0.6), rgba(10, 10, 10, 0.85));
+        .hero-overlay-dark {
+            background: linear-gradient(rgba(10, 10, 10, 0.85), rgba(10, 10, 10, 0.95)), url('Images/hero.jpeg');
+            background-size: cover;
+            background-position: center;
         }
 
         /* Slim Stats Bar */
@@ -122,9 +124,7 @@
     <header class="nav-transparent py-4 px-6">
         <div class="max-w-7xl mx-auto flex justify-between items-center">
             <div class="flex items-center">
-                <a href="index.html">
-                    <img src="Images/ITIF.png" alt="Inspiring Teens Logo" class="h-12 md:h-16">
-                </a>
+                <a href="index.html"><img src="Images/logo.png" alt="ITIF Logo" class="h-20 md:h-28 drop-shadow-lg"></a>
             </div>
 
             <nav class="hidden lg:flex space-x-8 text-[11px] font-bold uppercase tracking-widest text-white">
@@ -158,27 +158,32 @@
         </div>
     </header>
 
-    <section class="relative min-h-[90vh] flex items-center bg-black overflow-hidden">
-        <img src="Images/hero.jpeg" class="absolute inset-0 w-full h-full object-cover" alt="Mentorship Impartation">
-        <div class="absolute inset-0 hero-overlay"></div>
-        <div class="max-w-7xl mx-auto px-6 relative z-10 text-center md:text-left">
-            <span class="text-brand-yellow font-white uppercase tracking-[0.4em] text-xs mb-4 block"
-                data-aos="fade-right">Give them a chance.</span>
-            <h1 class="text-5xl md:text-7xl font-black uppercase tracking-tighter mb-6 text-white">
-                Empowering The Next <span class="text-brand-yellow">Generation</span> Of Leaders.
-            </h1>
-            <p class="max-w-xl mx-auto md:mx-0 text-gray-200 text-sm md:text-lg font-medium mb-10 leading-relaxed"
-                data-aos="fade-up" data-aos-delay="200">
-                Preserving the future of teenagers through Christian-based mentorship and a Bible-based support system.
-            </p>
-            <div class="flex flex-col sm:flex-row justify-center md:justify-start gap-4 px-6 md:px-0" data-aos="fade-up"
-                data-aos-delay="400">
-                <a href="contact.html"
-                    class="bg-brand-red text-white w-full sm:w-auto px-8 py-4 rounded-full font-bold uppercase text-xs btn-shadow text-center">Join
-                    Our Team</a>
-                <a href="about.html"
-                    class="bg-white text-black w-full sm:w-auto px-8 py-4 rounded-full font-bold uppercase text-xs btn-shadow text-center">Learn
-                    More</a>
+    <section class="relative hero-overlay-dark py-32 md:py-48 text-center text-white">
+        <div class="max-w-5xl mx-auto px-6 relative z-10" data-aos="fade-down">
+
+            <div
+                class="bg-black/50 backdrop-blur-md p-8 md:p-14 rounded-[3rem] border border-white/20 shadow-2xl mx-auto">
+
+                <p class="text-brand-yellow font-bold uppercase tracking-[0.3em] text-xs mb-4">Give Them A Chance</p>
+
+                <h1 class="text-5xl md:text-7xl font-black uppercase tracking-tighter mb-6 text-white leading-tight">
+                    Nurturing The Leaders<br> Of Tomorrow <span class="text-[#FFCC00]">TODAY</span>.
+                </h1>
+
+                <p class="text-gray-100 leading-relaxed text-lg md:text-xl font-medium mb-10 max-w-3xl mx-auto">
+                    Preserving the future of teenagers through Christian-based mentorship and a Bible-based support
+                    system.
+                </p>
+
+                <div class="flex flex-col sm:flex-row justify-center items-center gap-4">
+                    <a href="contact.html"
+                        class="bg-brand-red text-white px-10 py-4 rounded-full font-black text-xs uppercase tracking-widest hover:scale-105 transition duration-300 shadow-lg w-full sm:w-auto">Join
+                        Our Team</a>
+                    <a href="about.html"
+                        class="bg-white text-black px-10 py-4 rounded-full font-black text-xs uppercase tracking-widest hover:scale-105 transition duration-300 shadow-lg w-full sm:w-auto">Learn
+                        More</a>
+                </div>
+
             </div>
         </div>
     </section>
@@ -187,20 +192,20 @@
         <div
             class="max-w-7xl mx-auto px-6 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 text-center font-black uppercase tracking-tighter">
             <div class="stats-item" data-aos="zoom-in">
-                <h2 class="text-3xl md:text-4xl">10</h2>
-                <p class="text-[9px] text-brand-red tracking-widest">Active Platforms</p>
+                <h2 id="dyn-stat1-val" class="text-3xl md:text-4xl">10</h2>
+                <p id="dyn-stat1-label" class="text-[9px] text-brand-red tracking-widest">Active Platforms</p>
             </div>
             <div class="stats-item" data-aos="zoom-in" data-aos-delay="100">
-                <h2 class="text-3xl md:text-4xl">100%</h2>
-                <p class="text-[9px] text-brand-red tracking-widest">Bible-Based</p>
+                <h2 id="dyn-stat2-val" class="text-3xl md:text-4xl">100%</h2>
+                <p id="dyn-stat2-label" class="text-[9px] text-brand-red tracking-widest">Bible-Based</p>
             </div>
             <div class="stats-item" data-aos="zoom-in" data-aos-delay="200">
-                <h2 class="text-3xl md:text-4xl">Kaduna</h2>
-                <p class="text-[9px] text-brand-red tracking-widest">Headquarters</p>
+                <h2 id="dyn-stat3-val" class="text-3xl md:text-4xl">Abuja</h2>
+                <p id="dyn-stat3-label" class="text-[9px] text-brand-red tracking-widest">Headquarters</p>
             </div>
             <div class="stats-item" data-aos="zoom-in" data-aos-delay="300">
-                <h2 class="text-3xl md:text-4xl">2026</h2>
-                <p class="text-[9px] text-brand-red tracking-widest">Bootcamp Year</p>
+                <h2 id="dyn-stat4-val" class="text-3xl md:text-4xl">2026</h2>
+                <p id="dyn-stat4-label" class="text-[9px] text-brand-red tracking-widest">Bootcamp Year</p>
             </div>
         </div>
     </section>
@@ -221,7 +226,7 @@
                 </p>
                 <div class="flex items-center space-x-4 border-l-4 border-brand-yellow pl-6">
                     <div>
-                        <h4 class="font-extrabold text-black uppercase text-xs tracking-widest">Founded in Kaduna, 2025
+                        <h4 class="font-extrabold text-black uppercase text-xs tracking-widest">Founded in Abuja, 2019
                         </h4>
                     </div>
                 </div>
@@ -275,7 +280,7 @@
             <h3 class="text-3xl font-black uppercase tracking-tighter mb-6 italic">"Preserving and securing the future
                 of today's teens."</h3>
             <p class="text-gray-500 mb-8 max-w-2xl mx-auto">Join us for our next community visitation and mentoring
-                session in Kaduna.</p>
+                session in Abuja.</p>
             <a href="contact.html"
                 class="bg-brand-red text-white px-10 py-4 rounded-xl font-bold uppercase text-xs">Register Interest</a>
         </div>
@@ -318,10 +323,10 @@
 
             <div class="md:w-2/3 z-10">
                 <span class="text-brand-red font-black uppercase tracking-widest text-xs">Upcoming Global Event</span>
-                <h2 class="text-4xl md:text-6xl font-black mt-2 mb-4 uppercase tracking-tighter">Bootcamp 2026</h2>
-                <p class="text-xl text-[#9900CC] font-bold italic mb-6">Equipping the next generation for global impact.
+                <h2 id="dyn-event-title" class="text-4xl md:text-6xl font-black mt-2 mb-4 uppercase tracking-tighter">Bootcamp 2026</h2>
+                <p id="dyn-event-subtitle" class="text-xl text-[#9900CC] font-bold italic mb-6">Equipping the next generation for global impact.
                 </p>
-                <p class="text-gray-600 leading-relaxed font-medium mb-8 text-lg">Join teens from all over for our
+                <p id="dyn-event-desc" class="text-gray-600 leading-relaxed font-medium mb-8 text-lg">Join teens from all over for our
                     flagship annual bootcamp. Expect high-energy leadership training, spiritual growth, and
                     skill-building sessions designed to unlock your full potential and shape the future.</p>
 
@@ -333,7 +338,7 @@
             <div class="md:w-1/3 mt-12 md:mt-0 flex justify-center z-10" data-aos="zoom-in" data-aos-delay="200">
                 <div
                     class="bg-gray-50 border-8 border-[#03CDC3] rounded-full w-56 h-56 flex flex-col items-center justify-center shadow-xl hover:scale-105 transition duration-500">
-                    <span class="text-6xl font-black text-black">2026</span>
+                    <span id="dyn-event-year" class="text-6xl font-black text-black">2026</span>
                     <span class="text-xs font-bold uppercase tracking-widest text-brand-red mt-2">Coming Soon</span>
                 </div>
             </div>
@@ -344,8 +349,7 @@
         <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-12">
             <div>
                 <h4 class="text-xl font-black mb-4 uppercase">Inspiring <span class="text-brand-red">Teens</span></h4>
-                <p class="text-gray-500 text-xs leading-relaxed">No. 1 Faith Avenue, Garden of Faith Barnawa, Kaduna,
-                    Nigeria.</p>
+                <p class="text-gray-500 text-xs leading-relaxed">Abuja, FCT, Nigeria.</p>
             </div>
             <div class="flex flex-col space-y-2 text-[10px] font-bold uppercase tracking-widest text-gray-500">
                 <a href="about.html" class="hover:text-white">Our Mission</a>
@@ -366,6 +370,48 @@
             const menu = document.getElementById('mobileMenu');
             menu.classList.toggle('hidden');
         }
+    </script>
+    <script type="module">
+        import { database } from './firebase-config.js';
+        import { ref as dbRef, get } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-database.js";
+
+        async function loadDynamicContent() {
+            try {
+                const snapshot = await get(dbRef(database));
+                if (snapshot.exists()) {
+                    const data = snapshot.val();
+                    
+                    // Update Stats
+                    if (data.stats) {
+                        for(let i=1; i<=4; i++) {
+                            if (data.stats['stat'+i]) {
+                                const valEl = document.getElementById('dyn-stat'+i+'-val');
+                                const labelEl = document.getElementById('dyn-stat'+i+'-label');
+                                if (valEl && data.stats['stat'+i].value) valEl.innerText = data.stats['stat'+i].value;
+                                if (labelEl && data.stats['stat'+i].label) labelEl.innerText = data.stats['stat'+i].label;
+                            }
+                        }
+                    }
+
+                    // Update Events
+                    if (data.events) {
+                        const titleEl = document.getElementById('dyn-event-title');
+                        const subEl = document.getElementById('dyn-event-subtitle');
+                        const descEl = document.getElementById('dyn-event-desc');
+                        const yearEl = document.getElementById('dyn-event-year');
+                        
+                        if (titleEl && data.events.title) titleEl.innerText = data.events.title;
+                        if (subEl && data.events.subtitle) subEl.innerText = data.events.subtitle;
+                        if (descEl && data.events.description) descEl.innerText = data.events.description;
+                        if (yearEl && data.events.year) yearEl.innerText = data.events.year;
+                    }
+                }
+            } catch (e) {
+                console.error("Firebase load failed, using static content.", e);
+            }
+        }
+
+        loadDynamicContent();
     </script>
 </body>
 
